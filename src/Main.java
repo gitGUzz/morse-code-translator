@@ -1,36 +1,24 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
 
-    public void morseToWords(String input){
-        // check for space, if so, new words begins
-
-        // input is "phrase"
-    }
-
-    public void wordsToMorse(String input){
-        // check for space, if so, new words begins
-
-        // input is "phrase"
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+
 
         System.out.println("Enter the phrase: ");
         String phrase = sc.nextLine();
 
 
-        // SINGLE CHARACTER     >>  "[a-zA-Z]", Pattern.CASE_INSENSITIVE
-
-        // word                 >>  ""
+        // word                 >>  "^\s*[A-Za-z0-9]*$"
         // morse                >>  "[.-]{1,5}(?> [.-]{1,5})*(?>[.-]{1,5}(?> [.-]{1,5})*)*"
 
-        // TODO: word  >> ""  [find whole word match]
 
-        Pattern pattern_for_word = Pattern.compile("?");
+        Pattern pattern_for_word = Pattern.compile("^\\s*[A-Za-z0-9]*$"); // accepts withoutspaces
         Pattern pattern_for_morse = Pattern.compile("[.-]{1,5}(?> [.-]{1,5})*(?>[.-]{1,5}(?> [.-]{1,5})*)*");
 
         Matcher matcher_word = pattern_for_word.matcher(phrase);
@@ -42,8 +30,10 @@ public class Main {
 
         if(matchesWord){
             System.out.println("THIS IS A WORD MATCH!!");
+            wordsToMorse(phrase);
 
             //TODO: wordsToMorse()
+
         }
 
         if(matchesMorse){
@@ -53,5 +43,26 @@ public class Main {
         }
 
 
+    }
+    public static void morseToWords(String input){
+        // check for space, if so, new words begins
+
+        // input is "phrase"
+    }
+
+    public static void wordsToMorse(String input){
+        // check for space, if so, new words begins
+
+        // input is "phrase"
+
+        String[] asdf = input.split("");
+        String result = "";
+        for (int i = 0; i < asdf.length; i++) {
+            String[] letter = new String[]{asdf[i]};
+
+            // switch and add to a array of .-..- one by one into a string then print
+
+            System.out.print(Arrays.toString(letter));
+        }
     }
 }
