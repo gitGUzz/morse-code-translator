@@ -14,8 +14,11 @@ public class Main {
         // word                 >>  "^\s*[A-Za-z0-9]*$"
         // morse                >>  "[.-]{1,5}(?> [.-]{1,5})*(?>[.-]{1,5}(?> [.-]{1,5})*)*"
 
-        Pattern pattern_for_word = Pattern.compile("^\\s*[A-Za-z0-9]*$"); // accepts withoutspaces
-        Pattern pattern_for_morse = Pattern.compile("[.-]{1,5}(?> [.-]{1,5})*(?>[.-]{1,5}(?> [.-]{1,5})*)*");
+//        Pattern pattern_for_word = Pattern.compile("^\\s*[A-Za-z0-9]*$"); // accepts withoutspaces
+        Pattern pattern_for_word = Pattern.compile("[\\w\\s]+\\s*[A-Za-z0-9]*$"); // accepts with spaces
+//        Pattern pattern_for_morse = Pattern.compile("[.-]{1,5}(?> [.-]{1,5})*(?>[.-]{1,5}(?> [.-]{1,5})*)*"); // accepts no " / "
+//        Pattern pattern_for_morse = Pattern.compile("[\\/ .-]{1,5}(?> [.-]{1,5})*(?>[.-]{1,5}(?> [.-]{1,5})*)*"); //for other
+        Pattern pattern_for_morse = Pattern.compile("[\\/.\\-]{1,5}(?> [.\\-]{1,5})*(?>[.\\-]{1,5}(?> [.\\-]{1,5})*)*"); //for java
 
         Matcher matcher_word = pattern_for_word.matcher(phrase);
         Matcher matcher_morse = pattern_for_morse.matcher(phrase);
@@ -24,19 +27,19 @@ public class Main {
         boolean matchesMorse = matcher_morse.matches();
 
 
-        if(matchesWord){
+        if (matchesWord) {
             System.out.println("word match");
             wordsToMorse(phrase);
-        }
-
-        if(matchesMorse){
+        } else if (matchesMorse) {
             System.out.println("morse code match");
-            morseToWords(phrase);
+            morseToWords(phrase); //TODO: find right regex pattern for matching " / "
+        } else {
+            System.out.printf("\n\nCan't find match for: \n[%s]", phrase);
         }
-
 
     }
-    public static void morseToWords(String input){
+
+    public static void morseToWords(String input) {
         String[] splitArr = input.split(" ");
         ArrayList<String> result = new ArrayList<>(splitArr.length);
 
@@ -83,10 +86,10 @@ public class Main {
                 default -> result.add("(?)");
             }
         }
-        System.out.printf("%s ", String.join(" ", result));
+        System.out.printf("%s ", String.join("", result));
     }
 
-    public static void wordsToMorse(String input){
+    public static void wordsToMorse(String input) {
 
         String[] splitArr = input.split("");
         ArrayList<String> result = new ArrayList<>(splitArr.length);
@@ -130,6 +133,7 @@ public class Main {
                 case "8" -> result.add("---..");
                 case "9" -> result.add("----.");
                 case "0" -> result.add("-----");
+                case " " -> result.add("/");
                 default -> result.add("(?)");
             }
         }
