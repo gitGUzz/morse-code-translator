@@ -1,2 +1,10 @@
 # Morse code translator
-Designed to translate bidirectional phrases to letters and morse code symbols.
+```
+-.. . ... .. --. -. . -.. / - --- / - .-. .- -. ... .-.. .- - . /
+-... .. -.. .. .-. . -.-. - .. --- -. .- .-.. / .--. .... .-. .- ... . ... /
+- --- / .-.. . - - . .-. ... / .- -. -.. / -- --- .-. ... . / -.-. --- -.. . / 
+... -.-- -- -... --- .-.. ...
+```
+Translation:<br>*Designed to translate bidirectional phrases to letters and morse code symbols.*
+
+
