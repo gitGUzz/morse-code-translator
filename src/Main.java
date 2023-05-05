@@ -18,7 +18,8 @@ public class Main {
         Pattern pattern_for_word = Pattern.compile("[\\w\\s]+\\s*[A-Za-z0-9]*$"); // accepts with spaces
 //        Pattern pattern_for_morse = Pattern.compile("[.-]{1,5}(?> [.-]{1,5})*(?>[.-]{1,5}(?> [.-]{1,5})*)*"); // accepts no " / "
 //        Pattern pattern_for_morse = Pattern.compile("[\\/ .-]{1,5}(?> [.-]{1,5})*(?>[.-]{1,5}(?> [.-]{1,5})*)*"); //for other
-        Pattern pattern_for_morse = Pattern.compile("[\\/.\\-]{1,5}(?> [.\\-]{1,5})*(?>[.\\-]{1,5}(?> [.\\-]{1,5})*)*"); //for java
+//        Pattern pattern_for_morse = Pattern.compile("[\\/.\\-]{1,5}(?> [.\\-]{1,5})*(?>[.\\-]{1,5}(?> [.\\-]{1,5})*)*"); // NOSPACE for java
+        Pattern pattern_for_morse = Pattern.compile("[.\\- \\/]{1,5}(?> [.\\- \\/]{1,5})*(?>[.\\- \\/]{1,5}(?> [.\\- \\/]{1,5})*)*"); //for java
 
         Matcher matcher_word = pattern_for_word.matcher(phrase);
         Matcher matcher_morse = pattern_for_morse.matcher(phrase);
@@ -32,7 +33,7 @@ public class Main {
             wordsToMorse(phrase);
         } else if (matchesMorse) {
             System.out.println("morse code match");
-            morseToWords(phrase); //TODO: find right regex pattern for matching " / "
+            morseToWords(phrase);
         } else {
             System.out.printf("\n\nCan't find match for: \n[%s]", phrase);
         }
